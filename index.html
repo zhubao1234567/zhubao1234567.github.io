@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>微PE U盘重装Windows系统教程</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft Yahei", sans-serif;
+        }
+        body {
+            background-color: #f4f7fa;
+            color: #333;
+            line-height: 1.8;
+            padding: 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            color: #1f4e96;
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid #348ede;
+        }
+        .warn-box {
+            background: #f8d7da;
+            border-left: 6px solid #dc3545;
+            padding: 16px;
+            margin: 20px 0;
+            border-radius: 6px;
+        }
+        .tip-box {
+            background: #fff3cd;
+            border-left: 6px solid #ffc107;
+            padding:16px;
+            margin:20px 0;
+            border-radius:6px;
+        }
+        .step-card {
+            background: #ffffff;
+            padding:26px;
+            border-radius:12px;
+            box-shadow:0 3px 14px rgba(0,0,0,0.1);
+            margin-bottom:24px;
+        }
+        h2 {
+            color:#2b7cd3;
+            margin-bottom:14px;
+        }
+        ol,ul {
+            padding-left: 30px;
+            margin:12px 0;
+        }
+        li {
+            margin:10px 0;
+        }
+        img {
+            width:100%;
+            max-width:820px;
+            border-radius:8px;
+            margin:16px auto;
+            display:block;
+            border:1px solid #eee;
+        }
+        .img-caption {
+            text-align:center;
+            color:#555;
+            margin-bottom:10px;
+        }
+        footer {
+            text-align:center;
+            margin-top:40px;
+            color:#666;
+            font-size:14px;
+        }
+        /* 密码弹窗样式 */
+        .password-modal {
+            position:fixed;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+            background:rgba(0,0,0,0.85);
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            z-index:9999;
+        }
+        .pwd-container {
+            background:#fff;
+            padding:32px;
+            border-radius:14px;
+            width:90%;
+            max-width:440px;
+            text-align:center;
+        }
+        .pwd-container h3 {
+            margin-bottom:22px;
+            font-size:22px;
+        }
+        #pwd-input {
+            width:100%;
+            padding:14px;
+            font-size:18px;
+            border:1px solid #ccc;
+            border-radius:8px;
+            margin-bottom:18px;
+        }
+        #confirm-btn {
+            padding:13px 36px;
+            background:#2b7cd3;
+            color:white;
+            border:none;
+            border-radius:8px;
+            font-size:18px;
+            cursor:pointer;
+        }
+        #error-text {
+            color:red;
+            margin-top:12px;
+            display:none;
+        }
+        .main-content {
+            display:none;
+        }
+    </style>
+</head>
+<body>
+    <!-- 密码弹窗 -->
+    <div class="password-modal" id="pwdModal">
+        <div class="pwd-container">
+            <h3>🔒 访问教程需要密码</h3>
+            <input type="password" id="pwd-input" placeholder="请输入密码">
+            <br>
+            <button id="confirm-btn">确认查看</button>
+            <div id="error-text">密码错误，请重新输入！</div>
+        </div>
+    </div>
+
+    <!-- 教程主体内容 -->
+    <div class="main-content" id="contentWrap">
+        <h1>微PE工具箱U盘重装Windows系统完整教程</h1>
+        <div class="warn-box">
+            <strong>⚠️ 重大警告：</strong>重装系统会清空硬盘所有数据！操作前务必备份桌面、C盘全部重要文件，分区操作会删除硬盘资料，确认备份完成再继续！
+        </div>
+        <div class="tip-box">
+            <strong>📋 准备清单：</strong>8G以上U盘；电脑下载微PE制作启动盘；准备Windows原版ISO系统镜像放入U盘。
+        </div>
+
+        <div class="step-card">
+            <h2>第一步：U盘启动，进入PE系统</h2>
+            <ol>
+                <li>将做好微PE的U盘插入待重装电脑。</li>
+                <li>开机瞬间反复按下对应品牌的U盘启动快捷键，调出启动菜单。</li>
+                <li>选择U盘设备，回车，进入微PE桌面。</li>
+            </ol>
+            < img src="img1.jpg">U盘启动快捷键对照表">
+            <div class="img-caption">各品牌主板、笔记本、台式机U盘启动&BIOS快捷键附表</div>
+        </div>
+
+        <div class="step-card">
+            <h2>第二步：DiskGenius 删除旧分区</h2>
+            <ol>
+                <li>进入PE桌面，打开DiskGenius分区工具。</li>
+                <li>选中要装系统的硬盘，右键选择删除所有分区，点击确定，保存分区表更改。</li>
+            </ol>
+            < img src="img2.jpg">进入PE打开分区工具删除旧分区">
+            <div class="img-caption">打开DiskGenius删除硬盘原有分区</div>
+        </div>
+
+        <div class="step-card">
+            <h2>第三步：快速新建硬盘分区</h2>
+            <ol>
+                <li>点击上方【快速分区】按钮。</li>
+                <li>分区表类型选择GPT，设置分区数量、各个分区容量，按需修改。</li>
+                <li>确认勾选【创建ESP、MSR分区】，点击确定等待分区完成。</li>
+            </ol>
+            < img src="img3.jpg">快速分区参数设置">
+            <div class="img-caption">快速分区设置界面，推荐GPT分区表</div>
+        </div>
+
+        <div class="step-card">
+            <h2>第四步：Dism++释放系统镜像</h2>
+            <ol>
+                <li>PE中打开Dism++，选择释放映像功能。</li>
+                <li>浏览选中U盘中的Windows系统镜像。</li>
+                <li>选择目标系统盘（C盘），<strong>勾选添加引导、格式化</strong>，点击确定开始部署。</li>
+            </ol>
+            < img src="img4.jpg">Dism++释放映像设置">
+            <div class="img-caption">Dism++释放系统镜像，勾选添加引导与格式化</div>
+        </div>
+
+        <div class="step-card">
+            <h2>第五步：部署完成，重启电脑</h2>
+            <ol>
+                <li>等待系统镜像部署完成。</li>
+                <li>点击重启电脑，<b>重启瞬间立刻拔掉U盘</b>。</li>
+                <li>电脑自动进入Windows初始化安装流程，按提示完成系统设置。</li>
+            </ol>
+            < img src="img5.jpg">重启拔U盘提示">
+            <div class="img-caption">部署完成后重启，迅速拔出U盘</div>
+        </div>
+
+        <div class="step-card">
+            <h2>第六步：系统安装后续操作</h2>
+            <ul>
+                <li>进入Windows桌面后，安装显卡、网卡、声卡硬件驱动。</li>
+                <li>安装常用软件，恢复之前备份的个人文件。</li>
+            </ul>
+        </div>
+
+        <footer>
+            教程适用Win10/Win11原版系统安装<br>
+            重装系统存在数据丢失风险，请谨慎操作
+        </footer>
+    </div>
+
+<script>
+    const correctPassword = "120523";
+    const pwdModal = document.getElementById("pwdModal");
+    const contentWrap = document.getElementById("contentWrap");
+    const pwdInput = document.getElementById("pwd-input");
+    const confirmBtn = document.getElementById("confirm-btn");
+    const errorText = document.getElementById("error-text");
+
+    confirmBtn.onclick = function(){
+        if(pwdInput.value === correctPassword){
+            pwdModal.style.display = "none";
+            contentWrap.style.display = "block";
+        }else{
+            errorText.style.display = "block";
+            pwdInput.value = "";
+        }
+    }
+    //回车提交密码
+    pwdInput.addEventListener("keydown",function(e){
+        if(e.key === "Enter") confirmBtn.click();
+    })
+</script>
+</body>
+</html>
